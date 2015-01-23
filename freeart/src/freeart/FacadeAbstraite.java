@@ -1,5 +1,6 @@
 package freeart;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -66,19 +67,19 @@ public abstract class FacadeAbstraite<T> {
 	public List<Catalogue> find(String motsCles) {
 		 
 		String[] tab = motsCles.split(" ");
-		String select = "select * form catalogue ";
+		String select = "select distinct * from catalogue ";
 		String where = " where ";
 		String mot = " motsCles like '%";
 		String end = "%'";
 		String or = " or ";
-		String query = select + where + mot + motsCles + end + " Union ";
+		String query = select + where + mot + motsCles + end ;
 		
 		
 		for(int i=0; i<tab.length;i++)
 		{
 			if (i==0)
 			{
-				query += where+mot +tab[i]+end;
+				query += " union " + select+where+mot +tab[i]+end;
 			}
 			else
 			{
@@ -87,7 +88,13 @@ public abstract class FacadeAbstraite<T> {
 		}
 	
 		return getEntityManager().createQuery(query).getResultList();
-	}
+		/*
+		Catalogue c = new Catalogue();
+		c.setNom("younes");
+		ArrayList<Catalogue> list =  new ArrayList<Catalogue>();
+		list.add(c);*/
+		//return list;
+		}
 	
 	
 	/** 
