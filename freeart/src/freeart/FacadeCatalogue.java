@@ -19,4 +19,4 @@ public class FacadeCatalogue extends FacadeAbstraite {
 	public FacadeCatalogue() {
 		super(Catalogue.class);
 	}
-}
+} 

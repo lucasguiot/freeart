@@ -19,4 +19,4 @@ public class FacadeUser extends FacadeAbstraite {
 	public FacadeUser() {
 		super(User.class);
 	}
-}
+} 

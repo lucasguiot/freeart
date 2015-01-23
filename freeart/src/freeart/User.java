@@ -28,7 +28,7 @@ public class User implements Serializable {
 	private Catalogue catalogue;
 
 	public User() {
-	}
+	} 
 
 	public int getUserId() {
 		return this.userId;

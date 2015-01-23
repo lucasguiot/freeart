@@ -49,7 +49,7 @@ public class Servlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		String action = request.getParameter("action");
-
+ 
 		if (action.equals("search")) {
 			out.println(getHTMLCatalogue(request.getParameter("motsCles")));
 		}

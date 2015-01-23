@@ -61,10 +61,10 @@ public abstract class FacadeAbstraite<T> {
 	 */
 //	public T find(Object id) {
 //		return (T) getEntityManager().find(classeEntite, id);
-//	}
+//	} 
 
 	public List<Catalogue> find(String motsCles) {
-		
+		 
 		String[] tab = motsCles.split(" ");
 		String select = "select * form catalogue ";
 		String where = " where ";

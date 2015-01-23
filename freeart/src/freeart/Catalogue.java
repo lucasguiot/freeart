@@ -27,7 +27,7 @@ public class Catalogue implements Serializable {
 
 	public Catalogue() {
 	}
-
+ 
 	public int getCataId() {
 		return this.cataId;
 	}
