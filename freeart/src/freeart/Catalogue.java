@@ -27,6 +27,13 @@ public class Catalogue implements Serializable {
 
 	public Catalogue() {
 	}
+	
+	public Catalogue(int cataId, String nom, String motsCles)
+	{
+		this.cataId = cataId;
+		this.motsCles = motsCles;
+		this.nom = nom;
+	}
  
 	public int getCataId() {
 		return this.cataId;

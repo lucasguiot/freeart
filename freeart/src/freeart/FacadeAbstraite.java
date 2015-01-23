@@ -67,9 +67,9 @@ public abstract class FacadeAbstraite<T> {
 	public List<Catalogue> find(String motsCles) {
 		 
 		String[] tab = motsCles.split(" ");
-		String select = "select distinct * from catalogue ";
+		String select = "select distinct c.* from catalogue c ";
 		String where = " where ";
-		String mot = " motsCles like '%";
+		String mot = " c.motsCles like '%";
 		String end = "%'";
 		String or = " or ";
 		String query = select + where + mot + motsCles + end ;
@@ -86,8 +86,14 @@ public abstract class FacadeAbstraite<T> {
 				query += or +mot+ tab[i]+end; 
 			}			
 		}
-	
-		return getEntityManager().createQuery(query).getResultList();
+		List<Object[]> list = (getEntityManager().createNativeQuery(query).getResultList());
+		ArrayList<Catalogue> res = new ArrayList<Catalogue>();
+		for(Object[] o : list)
+		{
+			res.add(new Catalogue((int)o[0], (String)o[1], (String)o[2]));
+		}
+		return res;
+		
 		/*
 		Catalogue c = new Catalogue();
 		c.setNom("younes");
