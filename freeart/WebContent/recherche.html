@@ -3,12 +3,11 @@
 <title></title>
 </head>
 <body>
-	<form action="rechercher" id="search" method="get" name="Recherche">
-		<label>Recherche :</label> <input type="text" name="texteRecherche" />
+	<form action="Servlet" id="search" method="post" name="Recherche">
+		<label>Recherche :</label> <input type="text" name="motsCles" />
+  		 <input type="hidden" name="action" value="search"/>
 		<input
-			name="buttonRecherche" type="submit" value="Recherche" />&nbsp;
+			name="buttonRecherche" type="submit" value="Recherche" />
 	</form>
-
-	<p>&nbsp;</p>
 </body>
 </html>

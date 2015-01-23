@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class BioServlet
  */
-@WebServlet("/BioServlet")
+@WebServlet("/Servlet")
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +50,7 @@ public class Servlet extends HttpServlet {
 
 		String action = request.getParameter("action");
 
-		if (action.equals("lstcat")) {
+		if (action.equals("search")) {
 			out.println(getHTMLCatalogue(request.getParameter("motsCles")));
 		}
 //		if (action.equals("searchid")) {
