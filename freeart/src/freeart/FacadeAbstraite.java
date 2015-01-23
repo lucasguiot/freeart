@@ -59,10 +59,37 @@ public abstract class FacadeAbstraite<T> {
 	 * @param id
 	 * @return
 	 */
-	public T find(Object id) {
-		return (T) getEntityManager().find(classeEntite, id);
-	}
+//	public T find(Object id) {
+//		return (T) getEntityManager().find(classeEntite, id);
+//	}
 
+	public List<Catalogue> find(String motsCles) {
+		
+		String[] tab = motsCles.split(" ");
+		String select = "select * form catalogue ";
+		String where = " where ";
+		String mot = " motsCles like '%";
+		String end = "%'";
+		String or = " or ";
+		String query = select + where + mot + motsCles + end + " Union ";
+		
+		
+		for(int i=0; i<tab.length;i++)
+		{
+			if (i==0)
+			{
+				query += where+mot +tab[i]+end;
+			}
+			else
+			{
+				query += or +mot+ tab[i]+end; 
+			}			
+		}
+	
+		return getEntityManager().createQuery(query).getResultList();
+	}
+	
+	
 	/** 
 	 * Méthode recherchant tous les objets de ce type.
 	 * 

@@ -11,20 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//import model.Catalogue;
+//import model.Produit;
+//import ejb.FacadeCategorie;
+//import ejb.FacadeProduit;
 
 /**
  * Servlet implementation class BioServlet
  */
-@WebServlet("/Servlet")
+@WebServlet("/BioServlet")
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	// ici vous utilisez évidemment votre outil de persistance
 	// ces deux attributs sont mes EJB à moi qui gère ma persistance JPA
 	@EJB
-	private FacadeUser facadeUser;
-	@EJB
 	private FacadeCatalogue facadeCatalogue;
+	@EJB
+	private FacadeUser facadeUser;
 
 	/**
 	 * Réponse aux requêtes de type GET, inutile dans ce TP.
@@ -33,7 +37,7 @@ public class Servlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-		out.println("<h2>Bienvenue dans FreeArt !</h2>");
+		out.println("<h2>FreeArt MOTHER FUCKER YEAH !</h2>");
 	}
 
 	/**
@@ -47,12 +51,11 @@ public class Servlet extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action.equals("lstcat")) {
-			out.println(getHTMLUsers());
+			out.println(getHTMLCatalogue(request.getParameter("motsCles")));
 		}
-		/*
-		if (action.equals("searchid")) {
-			out.println(getHTMLProduit(request.getParameter("idproduit")));
-		}*/
+//		if (action.equals("searchid")) {
+//			out.println(getHTMLUser(request.getParameter("idproduit")));
+//		}
 	}
 
 	/**
@@ -60,11 +63,11 @@ public class Servlet extends HttpServlet {
 	 * contenant la liste des catégories disponibles dans la base
 	 * @return une chaîne au format HTML
 	 */
-	private String getHTMLUsers() {
+	private String getHTMLCatalogue(String motsCles) {
 		String html = "<ul>";
 		// ici vous utilisez évidemment votre outil de persistance
-		List<User> l = facadeUser.findAll();
-		for (Categorie s : l) {
+		List<Catalogue> l = facadeCatalogue.find(motsCles);
+		for (Catalogue s : l) {
 			html += "<li>" + s.getNom() + "</li>";
 		}
 		html += "</ul>";
@@ -78,26 +81,26 @@ public class Servlet extends HttpServlet {
 	 * trouvé.
 	 * @return une chaîne au format HTML
 	 */
-	private String getHTMLProduit(String id) {
-		String html = "";
-		Produit p = null;
-		try {
-			// ici vous utilisez évidemment votre outil de persistance
-			p = (Produit) facadeProduit.find(Integer.parseInt(id));
-		} catch (NumberFormatException ex) {
-			p = null;
-		}
-		if (p != null) {
-			html += "<p>" + p.getNom() + "</p>";
-			html += "<ul>";
-			html += "<li> Catégorie : " + p.getCategorie() + "</li>";
-			html += "<li> Prix : &euro; " + p.getPrix() + " ("
-					+ p.getDescription() + ")</li>";
-			html += "</ul>";
-		} else {
-			html += "<p>Aucun produit ne correspond à cet identifiant.</p>";
-		}
-		return html;
-	}
+//	private String getHTMLProduit(String id) {
+//		String html = "";
+//		Produit p = null;
+//		try {
+//			// ici vous utilisez évidemment votre outil de persistance
+//			p = (Produit) facadeProduit.find(Integer.parseInt(id));
+//		} catch (NumberFormatException ex) {
+//			p = null;
+//		}
+//		if (p != null) {
+//			html += "<p>" + p.getNom() + "</p>";
+//			html += "<ul>";
+//			html += "<li> Catégorie : " + p.getCategorie() + "</li>";
+//			html += "<li> Prix : &euro; " + p.getPrix() + " ("
+//					+ p.getDescription() + ")</li>";
+//			html += "</ul>";
+//		} else {
+//			html += "<p>Aucun produit ne correspond à cet identifiant.</p>";
+//		}
+//		return html;
+//	}
 
 }
