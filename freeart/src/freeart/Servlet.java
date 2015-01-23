@@ -39,7 +39,7 @@ public class Servlet extends HttpServlet {
 		response.setContentType("text/html");
 		out.println("<h2>FreeArt MOTHER FUCKER YEAH !</h2>");
 	}
-
+ 
 	/**
 	 * Réponse aux requêtes de type POST, à modifier, compléter, etc.
 	 */
