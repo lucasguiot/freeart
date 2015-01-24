@@ -18,17 +18,10 @@ public class User implements Serializable {
 
 	private String login;
 
-	private String mail;
-
 	private String mdp;
 
-	//bi-directional many-to-one association to Catalogue
-	@ManyToOne
-	@JoinColumn(name="cataId")
-	private Catalogue catalogue;
-
 	public User() {
-	} 
+	}
 
 	public int getUserId() {
 		return this.userId;
@@ -46,28 +39,12 @@ public class User implements Serializable {
 		this.login = login;
 	}
 
-	public String getMail() {
-		return this.mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
 	public String getMdp() {
 		return this.mdp;
 	}
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
-	}
-
-	public Catalogue getCatalogue() {
-		return this.catalogue;
-	}
-
-	public void setCatalogue(Catalogue catalogue) {
-		this.catalogue = catalogue;
 	}
 
 }

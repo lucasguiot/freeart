@@ -2,7 +2,6 @@ package freeart;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -21,20 +20,11 @@ public class Catalogue implements Serializable {
 
 	private String nom;
 
-	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="catalogue")
-	private List<User> users;
+	private int userId;
 
 	public Catalogue() {
 	}
-	
-	public Catalogue(int cataId, String nom, String motsCles)
-	{
-		this.cataId = cataId;
-		this.motsCles = motsCles;
-		this.nom = nom;
-	}
- 
+
 	public int getCataId() {
 		return this.cataId;
 	}
@@ -59,26 +49,12 @@ public class Catalogue implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<User> getUsers() {
-		return this.users;
+	public int getUserId() {
+		return this.userId;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public User addUser(User user) {
-		getUsers().add(user);
-		user.setCatalogue(this);
-
-		return user;
-	}
-
-	public User removeUser(User user) {
-		getUsers().remove(user);
-		user.setCatalogue(null);
-
-		return user;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 }
