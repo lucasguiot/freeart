@@ -46,7 +46,7 @@ public abstract class FacadeAbstraite<T> {
 	}
 	
 	public void setUser(String login, String mdp)
-	{
+	{ 
 		getEntityManager().;
 	}
 
