@@ -53,11 +53,21 @@ public class Servlet extends HttpServlet {
 		if (action.equals("search")) {
 			out.println(getHTMLCatalogue(request.getParameter("motsCles")));
 		}
+		else if(action.equals("inscription"))
+		{
+			setHTMLUser(request.getParameter("login"),request.getParameter("mdp"));
+		}
+		
+		
 //		if (action.equals("searchid")) {
 //			out.println(getHTMLUser(request.getParameter("idproduit")));
 //		}
 	}
-
+    private void setHTMLUser(String login, String mdp)
+    {
+    	mdp = User.encryptPassword(mdp);
+    	facadeUser.setUser();
+    }
 	/**
 	 * Méthode renvoyent une chaîne de caractères au format HTML
 	 * contenant la liste des catégories disponibles dans la base
@@ -66,7 +76,7 @@ public class Servlet extends HttpServlet {
 	private String getHTMLCatalogue(String motsCles) {
 		String html = "<ul>";
 		// ici vous utilisez évidemment votre outil de persistance
-		List<Catalogue> l = facadeCatalogue.find(motsCles);
+		List<Catalogue> l = facadeCatalogue.findCatalogue(motsCles);
 		for (Catalogue s : l) {
 			html += "<li>" + s.getNom() + "</li>";
 		}

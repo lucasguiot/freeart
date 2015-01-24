@@ -44,6 +44,11 @@ public abstract class FacadeAbstraite<T> {
 	public void edit(T entite) {
 		getEntityManager().merge(entite);
 	}
+	
+	public void setUser(String login, String mdp)
+	{
+		getEntityManager().;
+	}
 
 	/**
 	 * Méthode de suppression d'un objet.
@@ -64,10 +69,10 @@ public abstract class FacadeAbstraite<T> {
 //		return (T) getEntityManager().find(classeEntite, id);
 //	} 
 
-	public List<Catalogue> find(String motsCles) {
+	public List<Catalogue> findCatalogue(String motsCles) {
 		 
 		String[] tab = motsCles.split(" ");
-		String select = "select distinct c.* from catalogue c ";
+		String select = "select distinct c.nom, c.motsCles, c.userId from catalogue c ";
 		String where = " where ";
 		String mot = " c.motsCles like '%";
 		String end = "%'";
@@ -87,12 +92,15 @@ public abstract class FacadeAbstraite<T> {
 			}			
 		}
 		List<Object[]> list = (getEntityManager().createNativeQuery(query).getResultList());
-		ArrayList<Catalogue> res = new ArrayList<Catalogue>();
+		List<Catalogue> res;
+		res = CastManager.castCatalogue(list);
+		return res;
+		/*ArrayList<Catalogue> res = new ArrayList<Catalogue>();
 		for(Object[] o : list)
 		{
 			res.add(new Catalogue((int)o[0], (String)o[1], (String)o[2]));
 		}
-		return res;
+		return res;*/
 		
 		/*
 		Catalogue c = new Catalogue();
